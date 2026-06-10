@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class EnemyAI : MonoBehaviour
@@ -7,10 +8,7 @@ public class EnemyAI : MonoBehaviour
     public Transform jogador;
     public float velocidade = 3f;
     public float distanciaPerseguicao = 5f;
-    
-    [Tooltip("Distância que ele para de andar para não tremer em cima do alvo")]
     public float distanciaParada = 1.2f; 
-    
     public float intervaloDanoLobo = 1f; 
 
     [Header("Configurações de Passeio")]
@@ -19,16 +17,19 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Status")]
     public int vida = 3;
+    private int vidaMaxima;
+
+    [Header("UI da Vida")]
+    public GameObject canvasVida; 
+    public Slider barraVidaUI;    
 
     private float cronometroPasseio;
     private float tempoProximoAtaqueLobo; 
-    
     private Vector2 alvoPasseio;
-    
     private Rigidbody2D rb;
     private SpriteRenderer sr; 
     
-    private PlayerMovement scriptJogador;
+    private PlayerMovement scriptJogador; 
     private PetAI scriptLobo;
     private Transform alvoAtual;
     private bool estaPiscando = false;
@@ -38,8 +39,20 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>(); 
         cronometroPasseio = tempoPasseio;
+        vidaMaxima = vida;
 
-        // Procura o jogador na cena
+        if (barraVidaUI != null)
+        {
+            barraVidaUI.maxValue = vidaMaxima;
+            barraVidaUI.value = vidaMaxima;
+        }
+
+        if (canvasVida != null)
+        {
+            canvasVida.SetActive(false);
+        }
+
+        // Encontra o Jogador automaticamente pela Tag e pega o script de movimento
         GameObject objJogador = GameObject.FindGameObjectWithTag("Player");
         if (objJogador != null)
         {
@@ -47,7 +60,7 @@ public class EnemyAI : MonoBehaviour
             scriptJogador = objJogador.GetComponent<PlayerMovement>();
         }
 
-        // Procura o lobo na cena
+        // Encontra o Lobo automaticamente pela Tag
         GameObject objLobo = GameObject.FindGameObjectWithTag("Pet");
         if (objLobo != null)
         {
@@ -59,59 +72,53 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 1. Escolhe quem ele vai tentar atacar
         escolherAlvo();
 
-        // Se não tiver alvo nenhum, fica passeando
         if (alvoAtual == null)
         {
             Passear();
             return;
         }
 
-        // Calcula a distância exata até o alvo
         float distancia = Vector2.Distance(transform.position, alvoAtual.position);
         
-        // Verifica se o alvo é o jogador E se o jogador está escondido na moita
         bool alvoEscondido = false;
+        
+        // Se o alvo for o jogador, checa se ele está escondido na moita (ativado pelo Furtivo.cs)
         if (alvoAtual == jogador && scriptJogador != null && scriptJogador.estaEscondido)
         {
             alvoEscondido = true;
         }
 
-        // 2. Se estiver na área de visão e o alvo não estiver escondido, persegue!
+        // Se estiver perto e o alvo não estiver escondido, persegue
         if (distancia <= distanciaPerseguicao && !alvoEscondido)
         {
-            // --- NOVA LÓGICA DE ATAQUE ---
-            // Se o alvo for o lobo e estivermos colados nele (na distância de parada), ataca!
             if (alvoAtual == scriptLobo.transform && distancia <= distanciaParada + 0.2f)
             {
                 AtacarLobo();
             }
 
-            // O inimigo só anda se estiver mais longe que a distância de parada (Evita o tremor)
             if (distancia > distanciaParada)
             {
                 Vector2 direcao = ((Vector2)alvoAtual.position - rb.position).normalized;
-                Vector2 novaPosicao = rb.position + direcao * velocidade * Time.fixedDeltaTime;
+                Vector2 novaPosicao = rb.position + direcao * velocidade * Time.fixedDeltaTime; 
                 rb.MovePosition(novaPosicao);
             }
         }
         else
         {
-            // Se estiver muito longe ou escondido, volta a passear
+            // Se o jogador se esconder ou se afastar, o inimigo volta a passear de boa
             Passear();
         }
     }
 
     void escolherAlvo()
     {
-        // Prioridade: Tenta focar no lobo primeiro
+        // Prioriza o lobo se ele estiver vivo e muito perto (menos de 2.5 unidades de distância)
         if (scriptLobo != null && !scriptLobo.desmaiado)
         {
             float distLobo = Vector2.Distance(transform.position, scriptLobo.transform.position);
             
-            // Se o lobo estiver perto, o inimigo foca nele
             if (distLobo < 2.5f) 
             { 
                 alvoAtual = scriptLobo.transform;
@@ -119,7 +126,7 @@ public class EnemyAI : MonoBehaviour
             }
         }
         
-        // Se o lobo estiver longe ou desmaiado, o alvo passa a ser o jogador
+        // Se o lobo não estiver por perto ou estiver desmaiado, o foco volta a ser o jogador
         alvoAtual = jogador;
     }
 
@@ -127,14 +134,12 @@ public class EnemyAI : MonoBehaviour
     {
         cronometroPasseio += Time.fixedDeltaTime;
         
-        // Sorteia um novo ponto para andar se o tempo acabar ou se ele chegar no ponto atual
         if (cronometroPasseio >= tempoPasseio || Vector2.Distance(rb.position, alvoPasseio) < 0.2f)
         {
             DefinirNovoAlvoPasseio();
             cronometroPasseio = 0;
         }
         
-        // Anda devagarzinho até o ponto sorteado
         Vector2 direcao = (alvoPasseio - rb.position).normalized;
         Vector2 novaPosicao = rb.position + direcao * (velocidade * 0.5f) * Time.fixedDeltaTime;
         rb.MovePosition(novaPosicao);
@@ -146,20 +151,17 @@ public class EnemyAI : MonoBehaviour
         alvoPasseio = rb.position + direcaoAleatoria;
     }
 
-    // --- SISTEMA DE DANO DO INIMIGO ---
     public void ReceberDano(int quantidadeDano)
     {
+        if (vida <= 0) return; 
+
         vida -= quantidadeDano;
         
-        if (!estaPiscando) 
-        { 
-            StartCoroutine(FlashDanoSuperVisivel()); 
-        }
+        if (canvasVida != null) canvasVida.SetActive(true); 
+        if (barraVidaUI != null) barraVidaUI.value = vida; 
         
-        if (vida <= 0) 
-        { 
-            Morrer(); 
-        }
+        if (!estaPiscando) StartCoroutine(FlashDanoSuperVisivel()); 
+        if (vida <= 0) Morrer(); 
     }
 
     IEnumerator FlashDanoSuperVisivel()
@@ -168,49 +170,39 @@ public class EnemyAI : MonoBehaviour
         {
             estaPiscando = true;
             Color corOriginal = sr.color;
-            
             sr.color = Color.white; 
             yield return new WaitForSeconds(0.1f);
-            
             sr.color = new Color(0, 0, 0, 0); 
             yield return new WaitForSeconds(0.05f);
-            
             sr.color = corOriginal;
             estaPiscando = false;
         }
     }
 
+    // Método de morte simplificado para conversar com o EnemySpawner
     void Morrer() 
     { 
         Debug.Log("Inimigo derrotado!"); 
-        Destroy(gameObject); 
+        Destroy(gameObject); // O Spawner vai notar a falta deste objeto automaticamente
     }
 
-    // --- NOVO SISTEMA DE ATAQUE AO LOBO (POR DISTÂNCIA) ---
     void AtacarLobo()
     {
-        // Checa se o relógio global já passou do tempo de espera do ataque
         if (Time.time >= tempoProximoAtaqueLobo)
         {
-            // Só dá o dano se o lobo existir e NÃO estiver desmaiado
             if (scriptLobo != null && !scriptLobo.desmaiado) 
             {
                 scriptLobo.ReceberDano(1);
-                Debug.Log("Inimigo mordeu o Lobo (Matemática pura)!"); 
-                
-                // Agenda quando será o próximo ataque
                 tempoProximoAtaqueLobo = Time.time + intervaloDanoLobo;
             }
         }
     }
 
-    // --- ATAQUE NO JOGADOR (COLISÃO FÍSICA) ---
-    // Encostou = Game Over
     void OnCollisionEnter2D(Collision2D colisao)
     {
+        // Se encostar fisicamente no jogador, derrota ele imediatamente
         if (colisao.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Game Over! O Inimigo tocou no Jogador."); 
             Destroy(colisao.gameObject); 
         }
     }
