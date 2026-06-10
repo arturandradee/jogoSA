@@ -687,6 +687,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   velocidadeMovimento: 4
   velocidadeCorrida: 6.7
+  teclaCima: 119
+  teclaBaixo: 115
+  teclaEsquerda: 97
+  teclaDireita: 100
+  teclaCorrer: 304
   barraEstamina: {fileID: 1127423766}
   estaminaMaxima: 100
   taxaConsumo: 20
@@ -741,7 +746,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3930405040418583219, guid: 3136fe4901452a5408cf33f9168712cc, type: 3}
+  m_Sprite: {fileID: 3576191303334490079, guid: cd757e75b26f9954c9445b5b3a37a6ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -812,8 +817,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.87, y: 1.32}
+  m_Offset: {x: -0.08253193, y: -0.12062347}
+  m_Size: {x: 1.0350637, y: 1.5612469}
   m_Direction: 0
 --- !u!114 &147368845
 MonoBehaviour:
