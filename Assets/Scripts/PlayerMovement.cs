@@ -26,8 +26,11 @@ public class PlayerMovement : MonoBehaviour
     // 🔥 NOVO
     private SpriteRenderer sr;
 
+    private Animator anim;
+
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>(); // 🔥
 
@@ -42,16 +45,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float moverX = Input.GetAxis("Horizontal"); 
-        float moverY = Input.GetAxis("Vertical");   
+        float moverX = Input.GetAxisRaw("Horizontal"); 
+        float moverY = Input.GetAxisRaw("Vertical");   
 
         movimento = new Vector2(moverX, moverY).normalized;
 
         // 🔥 FAZ O PLAYER VIRAR
-        if (moverX > 0.1f)
+        if (moverX > 0.1f){
+            anim.SetBool("isWalking", true);
             sr.flipX = false;
-        else if (moverX < -0.1f)
+        }
+        else if (moverX < -0.1f){
+            anim.SetBool("isWalking", true);
             sr.flipX = true;
+            }
+        else if(moverX == 0f && moverX == 0f){
+            anim.SetBool("isWalking", false);
+        }
 
         ControlarEstamina();
     }
