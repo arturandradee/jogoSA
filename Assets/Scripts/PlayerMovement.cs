@@ -7,6 +7,13 @@ public class PlayerMovement : MonoBehaviour
     public float velocidadeMovimento = 5f;
     public float velocidadeCorrida = 8f;
 
+    [Header("Configuração de Teclas")]
+    public KeyCode teclaCima = KeyCode.W;
+    public KeyCode teclaBaixo = KeyCode.S;
+    public KeyCode teclaEsquerda = KeyCode.A;
+    public KeyCode teclaDireita = KeyCode.D;
+    public KeyCode teclaCorrer = KeyCode.LeftShift;
+
     [Header("Configurações de Estamina")]
     public Slider barraEstamina;
     public float estaminaMaxima = 100f;
@@ -23,16 +30,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movimento;
     private float velocidadeAtual;
 
-    // 🔥 NOVO
     private SpriteRenderer sr;
-
     private Animator anim;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>(); // 🔥
+        sr = GetComponent<SpriteRenderer>();
 
         estaminaAtual = estaminaMaxima;
 
@@ -45,22 +50,36 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float moverX = Input.GetAxisRaw("Horizontal"); 
-        float moverY = Input.GetAxisRaw("Vertical");   
+        float moverX = 0f;
+        float moverY = 0f;
+
+        if (Input.GetKey(teclaDireita)) moverX = 1f;
+        else if (Input.GetKey(teclaEsquerda)) moverX = -1f;
+
+        if (Input.GetKey(teclaCima)) moverY = 1f;
+        else if (Input.GetKey(teclaBaixo)) moverY = -1f;
 
         movimento = new Vector2(moverX, moverY).normalized;
 
-        // 🔥 FAZ O PLAYER VIRAR
-        if (moverX > 0.1f){
-            anim.SetBool("isWalking", true);
-            sr.flipX = false;
-        }
-        else if (moverX < -0.1f){
-            anim.SetBool("isWalking", true);
-            sr.flipX = true;
+        anim.SetBool("isWalking", false);
+        anim.SetBool("AndandoFrente", false);
+        anim.SetBool("AndandoCostas", false);
+
+        if (movimento.magnitude > 0)
+        {
+            if (Mathf.Abs(moverX) > 0.1f)
+            {
+                anim.SetBool("isWalking", true);
+                sr.flipX = (moverX < -0.1f);
             }
-        else if(moverX == 0f && moverX == 0f){
-            anim.SetBool("isWalking", false);
+            else if (moverY > 0.1f)
+            {
+                anim.SetBool("AndandoCostas", true);
+            }
+            else if (moverY < -0.1f)
+            {
+                anim.SetBool("AndandoFrente", true);
+            }
         }
 
         ControlarEstamina();
@@ -68,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ControlarEstamina()
     {
-        bool tentandoCorrer = Input.GetKey(KeyCode.LeftShift) && movimento.magnitude > 0;
+        bool tentandoCorrer = Input.GetKey(teclaCorrer) && movimento.magnitude > 0;
 
         if (tentandoCorrer && podeCorrer && estaminaAtual > 0)
         {
