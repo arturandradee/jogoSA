@@ -123,7 +123,7 @@ public class PetAI : MonoBehaviour
         if (jogador == null) return;
 
         float dist = Vector2.Distance(transform.position, jogador.position);
-
+        
         if (dist > distanciaSeguir)
         {
             Vector2 direcao = (jogador.position - transform.position).normalized;
