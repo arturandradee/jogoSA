@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class GeradorInimigos : MonoBehaviour
 {
     [Header("Referências")]
-    public GameObject[] enemyPrefabs; 
-    public Transform player;       
+    public GameObject[] prefabsInimigos; 
+    public Transform jogador;      
 
     [Header("Limites do Mapa Jogável")]
     public float minX;
@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     public float maxY;
 
     [Header("Configurações de Segurança")]
-    public float distanciaMinimaPlayer = 4f; 
+    public float distanciaMinimaJogador = 4f; 
 
     [Header("Configurações do Sistema de Ondas")]
     [SerializeField] private int quantidadeParaSpawnar = 2; 
@@ -30,9 +30,9 @@ public class EnemySpawner : MonoBehaviour
 
     void IniciarProximaOnda()
     {
-        if (enemyPrefabs == null || enemyPrefabs.Length == 0)
+        if (prefabsInimigos == null || prefabsInimigos.Length == 0)
         {
-            Debug.LogWarning("Nenhum prefab de inimigo foi colocado no EnemySpawner!");
+            Debug.LogWarning("Nenhum prefab de inimigo foi colocado no GeradorInimigos!");
             return;
         }
 
@@ -52,16 +52,15 @@ public class EnemySpawner : MonoBehaviour
         bool posicaoValida = false;
         int tentativas = 0;
 
-        // --- CORRIGIDO AQUI: mudado de 'tentatives' para 'tentativas' ---
         while (!posicaoValida && tentativas < 100)
         {
             float randomX = Random.Range(minX, maxX);
             float randomY = Random.Range(minY, maxY);
             posicaoSorteada = new Vector3(randomX, randomY, 0f);
 
-            float distanciaDoPlayer = Vector3.Distance(posicaoSorteada, player.position);
+            float distanciaDoJogador = Vector3.Distance(posicaoSorteada, jogador.position);
 
-            if (distanciaDoPlayer >= distanciaMinimaPlayer)
+            if (distanciaDoJogador >= distanciaMinimaJogador)
             {
                 posicaoValida = true;
             }
@@ -69,8 +68,8 @@ public class EnemySpawner : MonoBehaviour
             tentativas++;
         }
 
-        int indiceAleatorio = Random.Range(0, enemyPrefabs.Length);
-        GameObject inimigoSorteado = enemyPrefabs[indiceAleatorio];
+        int indiceAleatorio = Random.Range(0, prefabsInimigos.Length);
+        GameObject inimigoSorteado = prefabsInimigos[indiceAleatorio];
 
         Instantiate(inimigoSorteado, posicaoSorteada, Quaternion.identity);
     }
