@@ -1,20 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class MovimentoJogador : MonoBehaviour
 {
-    [Header("Configurações de Movimento")]
     public float velocidadeMovimento = 5f;
     public float velocidadeCorrida = 8f;
 
-    [Header("Configuração de Teclas")]
     public KeyCode teclaCima = KeyCode.W;
     public KeyCode teclaBaixo = KeyCode.S;
     public KeyCode teclaEsquerda = KeyCode.A;
     public KeyCode teclaDireita = KeyCode.D;
     public KeyCode teclaCorrer = KeyCode.LeftShift;
 
-    [Header("Configurações de Estamina")]
     public Slider barraEstamina;
     public float estaminaMaxima = 100f;
     public float taxaConsumo = 20f;
@@ -61,25 +58,33 @@ public class PlayerMovement : MonoBehaviour
 
         movimento = new Vector2(moverX, moverY).normalized;
 
-        anim.SetBool("isWalking", false);
-        anim.SetBool("AndandoFrente", false);
-        anim.SetBool("AndandoCostas", false);
-
         if (movimento.magnitude > 0)
         {
             if (Mathf.Abs(moverX) > 0.1f)
             {
-                anim.SetBool("isWalking", true);
+                anim.SetBool("AndandoFrente", false);
+                anim.SetBool("AndandoCostas", false);
+                anim.SetBool("andando", true);
                 sr.flipX = (moverX < -0.1f);
             }
             else if (moverY > 0.1f)
             {
+                anim.SetBool("andando", false);
+                anim.SetBool("AndandoFrente", false);
                 anim.SetBool("AndandoCostas", true);
             }
             else if (moverY < -0.1f)
             {
+                anim.SetBool("andando", false);
+                anim.SetBool("AndandoCostas", false);
                 anim.SetBool("AndandoFrente", true);
             }
+        }
+        else
+        {
+            anim.SetBool("andando", false);
+            anim.SetBool("AndandoFrente", false);
+            anim.SetBool("AndandoCostas", false);
         }
 
         ControlarEstamina();

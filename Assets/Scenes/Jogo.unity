@@ -646,11 +646,11 @@ GameObject:
   m_Component:
   - component: {fileID: 147368840}
   - component: {fileID: 147368842}
-  - component: {fileID: 147368841}
   - component: {fileID: 147368843}
   - component: {fileID: 147368844}
   - component: {fileID: 147368845}
   - component: {fileID: 147368846}
+  - component: {fileID: 147368847}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -673,30 +673,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &147368841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147368839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9acec2eca41eb9347bf5555da27b178b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  velocidadeMovimento: 4
-  velocidadeCorrida: 6.7
-  teclaCima: 119
-  teclaBaixo: 115
-  teclaEsquerda: 97
-  teclaDireita: 100
-  teclaCorrer: 304
-  barraEstamina: {fileID: 1127423766}
-  estaminaMaxima: 100
-  taxaConsumo: 20
-  taxaRegeneracao: 5
-  estaEscondido: 0
 --- !u!212 &147368842
 SpriteRenderer:
   serializedVersion: 2
@@ -854,6 +830,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &147368847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147368839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9acec2eca41eb9347bf5555da27b178b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  velocidadeMovimento: 4
+  velocidadeCorrida: 6.7
+  teclaCima: 119
+  teclaBaixo: 115
+  teclaEsquerda: 97
+  teclaDireita: 100
+  teclaCorrer: 304
+  barraEstamina: {fileID: 1127423766}
+  estaminaMaxima: 100
+  taxaConsumo: 20
+  taxaRegeneracao: 5
+  estaEscondido: 0
 --- !u!1 &185317891
 GameObject:
   m_ObjectHideFlags: 0

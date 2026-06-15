@@ -2,24 +2,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class EnemyAI : MonoBehaviour
+public class InteligenciaInimigo : MonoBehaviour
 {
-    [Header("Configurações do Inimigo")]
     public Transform jogador;
     public float velocidade = 3f;
     public float distanciaPerseguicao = 5f;
     public float distanciaParada = 1.2f; 
     public float intervaloDanoLobo = 1f; 
 
-    [Header("Configurações de Passeio")]
     public float raioPasseio = 3f;
     public float tempoPasseio = 2f;
 
-    [Header("Status")]
     public int vida = 3;
     private int vidaMaxima;
 
-    [Header("UI da Vida")]
     public GameObject canvasVida; 
     public Slider barraVidaUI;    
 
@@ -29,7 +25,7 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr; 
     
-    private PlayerMovement scriptJogador; 
+    private MovimentoJogador scriptJogador; 
     private PetAI scriptLobo;
     private Transform alvoAtual;
     private bool estaPiscando = false;
@@ -52,15 +48,13 @@ public class EnemyAI : MonoBehaviour
             canvasVida.SetActive(false);
         }
 
-        // Encontra o Jogador automaticamente pela Tag e pega o script de movimento
         GameObject objJogador = GameObject.FindGameObjectWithTag("Player");
         if (objJogador != null)
         {
             jogador = objJogador.transform;
-            scriptJogador = objJogador.GetComponent<PlayerMovement>();
+            scriptJogador = objJogador.GetComponent<MovimentoJogador>();
         }
 
-        // Encontra o Lobo automaticamente pela Tag
         GameObject objLobo = GameObject.FindGameObjectWithTag("Pet");
         if (objLobo != null)
         {
@@ -72,7 +66,7 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        escolherAlvo();
+        EscolherAlvo();
 
         if (alvoAtual == null)
         {
@@ -81,16 +75,13 @@ public class EnemyAI : MonoBehaviour
         }
 
         float distancia = Vector2.Distance(transform.position, alvoAtual.position);
-        
         bool alvoEscondido = false;
         
-        // Se o alvo for o jogador, checa se ele está escondido na moita (ativado pelo Furtivo.cs)
         if (alvoAtual == jogador && scriptJogador != null && scriptJogador.estaEscondido)
         {
             alvoEscondido = true;
         }
 
-        // Se estiver perto e o alvo não estiver escondido, persegue
         if (distancia <= distanciaPerseguicao && !alvoEscondido)
         {
             if (alvoAtual == scriptLobo.transform && distancia <= distanciaParada + 0.2f)
@@ -107,14 +98,12 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            // Se o jogador se esconder ou se afastar, o inimigo volta a passear de boa
             Passear();
         }
     }
 
-    void escolherAlvo()
+    void EscolherAlvo()
     {
-        // Prioriza o lobo se ele estiver vivo e muito perto (menos de 2.5 unidades de distância)
         if (scriptLobo != null && !scriptLobo.desmaiado)
         {
             float distLobo = Vector2.Distance(transform.position, scriptLobo.transform.position);
@@ -126,7 +115,6 @@ public class EnemyAI : MonoBehaviour
             }
         }
         
-        // Se o lobo não estiver por perto ou estiver desmaiado, o foco volta a ser o jogador
         alvoAtual = jogador;
     }
 
@@ -179,11 +167,10 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    // Método de morte simplificado para conversar com o EnemySpawner
     void Morrer() 
     { 
         Debug.Log("Inimigo derrotado!"); 
-        Destroy(gameObject); // O Spawner vai notar a falta deste objeto automaticamente
+        Destroy(gameObject); 
     }
 
     void AtacarLobo()
@@ -200,7 +187,6 @@ public class EnemyAI : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D colisao)
     {
-        // Se encostar fisicamente no jogador, derrota ele imediatamente
         if (colisao.gameObject.CompareTag("Player"))
         {
             Destroy(colisao.gameObject); 
