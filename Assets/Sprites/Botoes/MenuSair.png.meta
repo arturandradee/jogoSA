@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9692251332432bc4091b933ca1a3a1b2
+guid: 41eac65290536ae41ace3f55e2a8a7bb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6811243467999428861
-    second: BtnVoltar_0
+      213: -5980009561195555241
+    second: MenuSair_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BtnVoltar_0
+      name: MenuSair_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 76
-        width: 613
-        height: 220
+        x: 52
+        y: 13
+        width: 847
+        height: 259
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30fb133472a9971a0800000000000000
-      internalID: -6811243467999428861
+      spriteID: 756df7fccfcb20da0800000000000000
+      internalID: -5980009561195555241
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BtnVoltar_0: -6811243467999428861
+      MenuSair_0: -5980009561195555241
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
