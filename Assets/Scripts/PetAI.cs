@@ -35,7 +35,7 @@ public class PetAI : MonoBehaviour
     private Animator anim;
 
     private Transform inimigoAlvo;
-    private EnemyAI scriptInimigo;
+    private InteligenciaInimigo scriptInimigo;
 
     private bool focadoNoRetorno = false;
 
@@ -226,7 +226,7 @@ public class PetAI : MonoBehaviour
             if (dist <= raioAutoAtaque)
             {
                 inimigoAlvo = inimigo.transform;
-                scriptInimigo = inimigo.GetComponent<EnemyAI>();
+                scriptInimigo = inimigo.GetComponent<InteligenciaInimigo>();
                 estadoAtual = EstadoPet.Perseguindo;
                 break;
             }
@@ -254,7 +254,7 @@ public class PetAI : MonoBehaviour
         if (maisProximo != null)
         {
             inimigoAlvo = maisProximo;
-            scriptInimigo = maisProximo.GetComponent<EnemyAI>();
+            scriptInimigo = maisProximo.GetComponent<InteligenciaInimigo>();
             estadoAtual = EstadoPet.Perseguindo;
         }
     }
