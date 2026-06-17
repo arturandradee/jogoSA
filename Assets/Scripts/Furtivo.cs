@@ -6,7 +6,7 @@ public class Furtivo : MonoBehaviour
     {
         if (outro.CompareTag("Player"))
         {
-            PlayerMovement scriptPlayer = outro.GetComponent<PlayerMovement>();
+            MovimentoJogador scriptPlayer = outro.GetComponent<MovimentoJogador>();
             if (scriptPlayer != null)
             {
                 scriptPlayer.estaEscondido = true;
@@ -28,7 +28,7 @@ public class Furtivo : MonoBehaviour
     {
         if (outro.CompareTag("Player"))
         {
-            PlayerMovement scriptPlayer = outro.GetComponent<PlayerMovement>();
+            MovimentoJogador scriptPlayer = outro.GetComponent<MovimentoJogador>();
             if (scriptPlayer != null)
             {
                 scriptPlayer.estaEscondido = false;
