@@ -24,12 +24,11 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             SceneManager.LoadScene("GameOver");
         }
-
     }
 }

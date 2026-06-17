@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 4c37164059c6f344d8ae2b274fef663e
+guid: 79b02f17455515a41b72b248e69785ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4846340298868951469
-    second: lobo respirando (1)_0
-  - first:
-      213: -4488006121339993482
-    second: lobo respirando (1)_1
-  - first:
-      213: 8378362153855247923
-    second: lobo respirando (1)_2
-  - first:
-      213: 7290453657064714098
-    second: lobo respirando (1)_3
-  - first:
-      213: 2199903358148868700
-    second: lobo respirando (1)_4
+      213: 5745277522351226546
+    second: MenuSl2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -138,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lobo respirando (1)_0
+      name: MenuSl2_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 14
-        width: 28
-        height: 17
+        x: 0
+        y: 0
+        width: 960
+        height: 540
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,96 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3567149dc275ebcb0800000000000000
-      internalID: -4846340298868951469
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_1
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 14
-        width: 28
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 67240cb063667b1c0800000000000000
-      internalID: -4488006121339993482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_2
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 14
-        width: 28
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3366e1c0dfbe54470800000000000000
-      internalID: 8378362153855247923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_3
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 14
-        width: 28
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27f2ac089f4ec2560800000000000000
-      internalID: 7290453657064714098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_4
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 14
-        width: 28
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5af6aad270a78e10800000000000000
-      internalID: 2199903358148868700
+      spriteID: 2bef7cf77735bbf40800000000000000
+      internalID: 5745277522351226546
       vertices: []
       indices: 
       edges: []
@@ -261,11 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lobo respirando (1)_0: -4846340298868951469
-      lobo respirando (1)_1: -4488006121339993482
-      lobo respirando (1)_2: 8378362153855247923
-      lobo respirando (1)_3: 7290453657064714098
-      lobo respirando (1)_4: 2199903358148868700
+      MenuSl2_0: 5745277522351226546
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,20 +5,24 @@ using TMPro;
 
 public class PetAI : MonoBehaviour
 {
+    [Header("Configurações Gerais")]
     public Transform jogador;
     public float velocidade = 6f;
     public float distanciaSeguir = 1.5f;
 
+    [Header("Configurações de Ataque")]
     public float alcanceAtaque = 1.5f; 
     public float intervaloAtaque = 0.5f; 
     public float raioAutoAtaque = 3.0f; 
 
+    [Header("Sistema de Vida e Regeneração")]
     public int vidaMaxima = 5;
     public Slider barraVidaLobo;
     public float tempoParaRegenerar = 5f; 
     public float intervaloCura = 1f; 
     public float tempoInativo = 20f; 
 
+    [Header("UI de Texto (TextMeshPro)")]
     public TextMeshProUGUI textoCronometro; 
 
     private float cronometroForaCombate;
@@ -31,7 +35,7 @@ public class PetAI : MonoBehaviour
     private Animator anim;
 
     private Transform inimigoAlvo;
-    private InteligenciaInimigo scriptInimigo;
+    private EnemyAI scriptInimigo;
 
     private bool focadoNoRetorno = false;
 
@@ -68,8 +72,10 @@ public class PetAI : MonoBehaviour
         if (cronometroAtaque > 0)
             cronometroAtaque -= Time.deltaTime;
 
+        // 🔥 COPIA DIREÇÃO DO PLAYER (COM INVERSÃO)
         VirarIgualJogador();
 
+        // Botão G = voltar
         if (Input.GetKeyDown(KeyCode.G))
         {
             inimigoAlvo = null;
@@ -77,17 +83,20 @@ public class PetAI : MonoBehaviour
             focadoNoRetorno = true;
         }
 
+        // Botão F = atacar
         if (Input.GetKeyDown(KeyCode.F) && estadoAtual == EstadoPet.Seguindo)
         {
             focadoNoRetorno = false;
             EncontrarInimigoMaisProximo();
         }
 
+        // Auto ataque
         if (estadoAtual == EstadoPet.Seguindo && !focadoNoRetorno)
         {
             VigiarArredores();
         }
 
+        // Regeneração
         if (vidaAtual < vidaMaxima && estadoAtual != EstadoPet.Atacando)
         {
             ContarRegeneracao();
@@ -111,11 +120,12 @@ public class PetAI : MonoBehaviour
         }
     }
 
+    // 🔥 AQUI ESTÁ A CORREÇÃO DO INVERTIDO
     void VirarIgualJogador()
     {
         if (srJogador == null) return;
 
-        sr.flipX = !srJogador.flipX; 
+        sr.flipX = !srJogador.flipX; // 👈 inversão aplicada
     }
 
     void SeguirJogador()
@@ -123,7 +133,7 @@ public class PetAI : MonoBehaviour
         if (jogador == null) return;
 
         float dist = Vector2.Distance(transform.position, jogador.position);
-        
+
         if (dist > distanciaSeguir)
         {
             Vector2 direcao = (jogador.position - transform.position).normalized;
@@ -216,7 +226,7 @@ public class PetAI : MonoBehaviour
             if (dist <= raioAutoAtaque)
             {
                 inimigoAlvo = inimigo.transform;
-                scriptInimigo = inimigo.GetComponent<InteligenciaInimigo>();
+                scriptInimigo = inimigo.GetComponent<EnemyAI>();
                 estadoAtual = EstadoPet.Perseguindo;
                 break;
             }
@@ -244,7 +254,7 @@ public class PetAI : MonoBehaviour
         if (maisProximo != null)
         {
             inimigoAlvo = maisProximo;
-            scriptInimigo = maisProximo.GetComponent<InteligenciaInimigo>();
+            scriptInimigo = maisProximo.GetComponent<EnemyAI>();
             estadoAtual = EstadoPet.Perseguindo;
         }
     }

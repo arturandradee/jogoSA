@@ -6,15 +6,18 @@ public class Furtivo : MonoBehaviour
     {
         if (outro.CompareTag("Player"))
         {
-            MovimentoJogador scriptJogador = outro.GetComponent<MovimentoJogador>();
-            if (scriptJogador != null)
+            PlayerMovement scriptPlayer = outro.GetComponent<PlayerMovement>();
+            if (scriptPlayer != null)
             {
-                scriptJogador.estaEscondido = true;
+                scriptPlayer.estaEscondido = true;
                 
+                // --- CORREÇÃO: Respeita a cor original do jogador ---
                 SpriteRenderer sr = outro.GetComponent<SpriteRenderer>();
                 if (sr != null)
                 {
+                    // Pega a cor atual que o jogador já tem
                     Color corAtual = sr.color;
+                    // Mantém R, G, B originais e muda o Alpha para 0.5f (transparente)
                     sr.color = new Color(corAtual.r, corAtual.g, corAtual.b, 0.5f);
                 }
             }
@@ -25,15 +28,18 @@ public class Furtivo : MonoBehaviour
     {
         if (outro.CompareTag("Player"))
         {
-            MovimentoJogador scriptJogador = outro.GetComponent<MovimentoJogador>();
-            if (scriptJogador != null)
+            PlayerMovement scriptPlayer = outro.GetComponent<PlayerMovement>();
+            if (scriptPlayer != null)
             {
-                scriptJogador.estaEscondido = false;
+                scriptPlayer.estaEscondido = false;
                 
+                // --- CORREÇÃO: Respeita a cor original do jogador ---
                 SpriteRenderer sr = outro.GetComponent<SpriteRenderer>();
                 if (sr != null)
                 {
+                    // Pega a cor atual (que está transparente)
                     Color corAtual = sr.color;
+                    // Mantém R, G, B originais e volta o Alpha para 1f (opaco)
                     sr.color = new Color(corAtual.r, corAtual.g, corAtual.b, 1.0f);
                 }
             }

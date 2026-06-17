@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 4c37164059c6f344d8ae2b274fef663e
+guid: a7c7a57a0c49f1742b572e1aef943365
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4846340298868951469
-    second: lobo respirando (1)_0
-  - first:
-      213: -4488006121339993482
-    second: lobo respirando (1)_1
-  - first:
-      213: 8378362153855247923
-    second: lobo respirando (1)_2
-  - first:
-      213: 7290453657064714098
-    second: lobo respirando (1)_3
-  - first:
-      213: 2199903358148868700
-    second: lobo respirando (1)_4
+      213: 4183587346784281210
+    second: "Areia Ch\xE3o_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -138,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lobo respirando (1)_0
+      name: "Areia Ch\xE3o_0"
       rect:
         serializedVersion: 2
-        x: 18
-        y: 14
-        width: 28
-        height: 17
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,96 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3567149dc275ebcb0800000000000000
-      internalID: -4846340298868951469
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_1
-      rect:
-        serializedVersion: 2
-        x: 82
-        y: 14
-        width: 28
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 67240cb063667b1c0800000000000000
-      internalID: -4488006121339993482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_2
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 14
-        width: 28
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3366e1c0dfbe54470800000000000000
-      internalID: 8378362153855247923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_3
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 14
-        width: 28
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27f2ac089f4ec2560800000000000000
-      internalID: 7290453657064714098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lobo respirando (1)_4
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 14
-        width: 28
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c5af6aad270a78e10800000000000000
-      internalID: 2199903358148868700
+      spriteID: a7265ebb6861f0a30800000000000000
+      internalID: 4183587346784281210
       vertices: []
       indices: 
       edges: []
@@ -261,11 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lobo respirando (1)_0: -4846340298868951469
-      lobo respirando (1)_1: -4488006121339993482
-      lobo respirando (1)_2: 8378362153855247923
-      lobo respirando (1)_3: 7290453657064714098
-      lobo respirando (1)_4: 2199903358148868700
+      "Areia Ch\xE3o_0": 4183587346784281210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
