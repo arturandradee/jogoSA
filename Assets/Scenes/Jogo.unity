@@ -1715,7 +1715,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.55, y: 0.02, z: -10}
+  m_LocalPosition: {x: -5.9, y: -1.62, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2378,6 +2378,27 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
+<<<<<<< HEAD
+      e00: 4.361727e+23
+      e01: 0
+      e02: 4.3617153e+23
+      e03: -1.5032402e+10
+      e10: 1.25e-43
+      e11: 0
+      e12: 1.25e-43
+      e13: 7.34e-43
+      e20: -1.844665e+27
+      e21: 0
+      e22: 3.904241e+19
+      e23: 2.9075244e-28
+      e30: 4.591e-41
+      e31: 0
+      e32: 7.38e-43
+      e33: 7.36e-43
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: -1.6429079e+18, g: -1.6429079e+18, b: -1.6429079e+18, a: -1.6429079e+18}
+=======
       e00: 1.2072374e-32
       e01: 0
       e02: 1.20723505e-32
@@ -2397,6 +2418,7 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 7.544906e-36, g: 7.544906e-36, b: 7.544906e-36, a: 7.544906e-36}
+>>>>>>> 4f15ec40f201c55420f054eb3fc9b04bd4f745ce
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
