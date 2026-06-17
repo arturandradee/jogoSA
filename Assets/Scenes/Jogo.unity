@@ -463,7 +463,7 @@ Animator:
   m_GameObject: {fileID: 87600285}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 354f80a3e559e9f49ba193466ddd5e91, type: 2}
+  m_Controller: {fileID: 9100000, guid: 695831f80db79da4c9e93423cde4cdc1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1146,14 +1146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc386b096f6c1049a27018a993fc59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefabs:
-  - {fileID: 5651453266875774160, guid: 45b8f057e42d3d64593250058765dfbb, type: 3}
-  player: {fileID: 147368840}
+  prefabsInimigos: []
+  jogador: {fileID: 0}
   minX: -10.15
   maxX: 4.05
   minY: -7.58
   maxY: 5.35
-  distanciaMinimaPlayer: 6.7
+  distanciaMinimaJogador: 4
   quantidadeParaSpawnar: 2
 --- !u!4 &358547520
 Transform:
@@ -2898,6 +2897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inimigo
       objectReference: {fileID: 0}
+    - target: {fileID: 5856781684904972754, guid: 45b8f057e42d3d64593250058765dfbb, type: 3}
+      propertyPath: jogador
+      value: 
+      objectReference: {fileID: 147368840}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
