@@ -1146,14 +1146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc386b096f6c1049a27018a993fc59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefabs:
-  - {fileID: 5651453266875774160, guid: 45b8f057e42d3d64593250058765dfbb, type: 3}
-  player: {fileID: 147368840}
+  prefabsInimigos: []
+  jogador: {fileID: 0}
   minX: -10.15
   maxX: 4.05
   minY: -7.58
   maxY: 5.35
-  distanciaMinimaPlayer: 6.7
+  distanciaMinimaJogador: 4
   quantidadeParaSpawnar: 2
 --- !u!4 &358547520
 Transform:
@@ -1690,7 +1689,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1715,7 +1714,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.55, y: 0.02, z: -10}
+  m_LocalPosition: {x: -5.82, y: -1.83, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
